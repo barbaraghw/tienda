@@ -1,0 +1,20 @@
+/* Estilos para la página de checkout */
+.checkout-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.checkout-summary {
+    width: 100%;
+    max-width: 600px;
+}
+
+.checkout-summary h2 {
+    margin-bottom: 15px;
+}
+
+.checkout-summary p {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,17 @@
+/* Estilos para la página del carrito */
+.cart-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    width: 100%;
+    max-width: 600px;
+}
