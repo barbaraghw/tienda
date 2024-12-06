@@ -43,3 +43,37 @@
 .product-card:hover {
     transform: translateY(-5px);
 }
+/* src/styles/home.css */
+.add-product-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-product-btn:hover {
+    background-color: #218838;
+}
+.invoice {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+.invoice h3 {
+    margin-bottom: 10px;
+}
+
+.invoice ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.invoice li {
+    margin-bottom: 5px;
+}

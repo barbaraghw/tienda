@@ -1,3 +1,4 @@
+// src/components/RegisterForm.js
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -5,13 +6,14 @@ import { useNavigate } from 'react-router-dom';
 const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
     const { register } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         try {
-            register(email, password);
+            register(email, password, isAdmin);
             alert('Usuario registrado exitosamente');
             navigate('/login'); // Redirige a la página de inicio de sesión
         } catch (error) {
@@ -38,6 +40,16 @@ const RegisterForm = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
+            </div>
+            <div>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={isAdmin}
+                        onChange={(e) => setIsAdmin(e.target.checked)}
+                    />
+                    ¿Es administrador?
+                </label>
             </div>
             <button type="submit">Registrarse</button>
         </form>

@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext } from 'react';
+// src/context/AuthContext.js
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
@@ -6,21 +7,25 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
 
-    // Función para registrar un nuevo usuario
-    const register = (email, password) => {
-        // Verificar si el usuario ya está registrado
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (storedUser) {
+            setIsAuthenticated(true);
+            setCurrentUser(storedUser);
+        }
+    }, []);
+
+    const register = (email, password, isAdmin = false) => {
         const users = JSON.parse(localStorage.getItem('users')) || [];
         if (users.some(user => user.email === email)) {
             throw new Error('El usuario ya está registrado');
         }
 
-        // Guardar el nuevo usuario en localStorage
-        users.push({ email, password });
+        users.push({ email, password, isAdmin });
         localStorage.setItem('users', JSON.stringify(users));
         return true;
     };
 
-    // Función para iniciar sesión
     const login = (email, password) => {
         const users = JSON.parse(localStorage.getItem('users')) || [];
         const user = users.find(user => user.email === email && user.password === password);
@@ -28,16 +33,17 @@ export const AuthProvider = ({ children }) => {
         if (user) {
             setIsAuthenticated(true);
             setCurrentUser(user);
+            localStorage.setItem('currentUser', JSON.stringify(user)); // Guardar el usuario actual en localStorage
             return true;
         } else {
             throw new Error('Credenciales incorrectas');
         }
     };
 
-    // Función para cerrar sesión
     const logout = () => {
         setIsAuthenticated(false);
         setCurrentUser(null);
+        localStorage.removeItem('currentUser'); // Eliminar el usuario actual de localStorage
     };
 
     return (
