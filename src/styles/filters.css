@@ -1,0 +1,48 @@
+/* Filtros contenedor en fila */
+.filter-container {
+    display: flex;
+    justify-content: space-between;  /* Para distribuir los filtros en fila */
+    gap: 20px;  /* Espacio entre los filtros */
+    margin-bottom: 20px;
+    flex-wrap: wrap;  /* Permite que los filtros se ajusten en pantallas pequeñas */
+}
+
+/* Estilo para la categoría y precios */
+.filter-item {
+    display: flex;
+    flex-direction: column;  /* Las etiquetas y campos se alinean verticalmente */
+    width: 100%; /* El filtro ocupará el 100% de su contenedor disponible */
+    max-width: 250px; /* Limita el tamaño de cada filtro */
+}
+
+/* Estilo de las etiquetas */
+.filter-item label {
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el input/select */
+    font-weight: bold;
+}
+
+/* Estilos para los inputs y selects */
+.filter-item select,
+.filter-item input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Ajuste para los inputs de precio para que ocupen el 100% del ancho */
+.filter-item input {
+    width: 100%;
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .filter-container {
+        flex-direction: column;  /* Los filtros se apilan en pantallas pequeñas */
+        align-items: center;  /* Centra los filtros */
+    }
+
+    .filter-item {
+        width: 100%;  /* Los filtros ocupan todo el ancho disponible */
+    }
+}

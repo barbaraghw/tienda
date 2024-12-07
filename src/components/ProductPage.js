@@ -1,19 +1,18 @@
-import React from 'react';
-import { useAuth } from '../context/AuthContext';
+import React, { useState } from 'react';
+import Filters from './Filters';
+import ProductList from './ProductList';
 
 const ProductPage = () => {
-    const { currentUser } = useAuth();
+    const [filters, setFilters] = useState({ category: '', priceRange: { min: 0, max: Infinity } });
+
+    const handleFilterChange = (newFilters) => {
+        setFilters(newFilters);
+    };
 
     return (
-        <div>
-            <h1>Product Page</h1>
-            {/* Mostrar todos los productos */}
-            <p>Welcome, {currentUser ? currentUser.username : 'Guest'}!</p>
-            {currentUser && currentUser.isAdmin ? (
-                <p>You have admin privileges.</p>
-            ) : (
-                <p>You can only purchase products. No editing or deleting privileges.</p>
-            )}
+        <div className="product-page">
+            <Filters onFilterChange={handleFilterChange} />
+            <ProductList filters={filters} />
         </div>
     );
 };

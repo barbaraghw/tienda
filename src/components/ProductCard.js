@@ -1,21 +1,22 @@
 import React from 'react';
+import { FaCartPlus } from 'react-icons/fa';
 
-const ProductCard = ({ product, onDelete }) => {
+const ProductCard = ({ product, onAddToCart, currentUser, onDelete }) => {
     return (
         <div className="product-card">
-            <h3>{product.name}</h3>
-            {product.imageUrl && (
-                <img 
-                    src={product.imageUrl} 
-                    alt={product.name} 
-                    style={{ width: '150px', height: '150px', objectFit: 'cover' }} 
-                />
-            )}
+            <div className="product-header">
+                <h3>{product.name}</h3>
+                <FaCartPlus className="cart-icon" onClick={() => onAddToCart(product)} />
+            </div>
+            <img src={product.imageUrl} alt={product.name} />
             <p>Precio: ${product.price}</p>
-            <p>Categoria: {product.category}</p>
-            <p>Publicado por: {product.uploader}</p>
-            {onDelete && (
-                <button onClick={() => onDelete(product.id)}>Eliminar</button>
+            <p>Categoría: {product.category}</p>
+            {currentUser && currentUser.isAdmin && (
+                <p>Publicado por: {product.uploader}</p>
+            )}
+            <p>Cantidad disponible: {product.quantity}</p>
+            {currentUser && currentUser.isAdmin && (
+                <button onClick={onDelete}>Eliminar</button>
             )}
         </div>
     );

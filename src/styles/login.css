@@ -6,7 +6,10 @@
     height: 100vh;
     background-color: #f1f1f1;
 }
-
+.login-page h1{
+    margin-right: 20px;
+    margin-bottom: 50px;
+}
 .login-form {
     background-color: #ffffff;
     padding: 20px;

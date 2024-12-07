@@ -1,28 +1,39 @@
-/* Estilos para el encabezado */
-header {
-    background-color: #343a40;
-    color: #ffffff;
-    padding: 10px 20px;
+/* src/styles/header.css */
+.app-header {
+    background-color: #cf46a2; /* Fondo oscuro */
+    color: white; /* Texto blanco */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Espaciado entre elementos */
+    align-items: center; /* Centrar verticalmente */
+    padding: 10px 20px; /* Espaciado interno */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+    border-radius: 30px;
+}
+
+.home-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.user-actions, .guest-actions {
+    display: flex;
     align-items: center;
+    gap: 10px; /* Espaciado entre botones/enlaces */
 }
 
-header .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+.user-actions button, .guest-actions a {
+    background-color: transparent; /* Azul para botones */
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-header nav {
-    display: flex;
-    gap: 15px;
-}
-
-header nav a {
-    color: #ffffff;
-    font-weight: bold;
-}
-
-header nav a:hover {
-    color: #ddd;
+.user-actions button:hover, .guest-actions a:hover {
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    font-weight: bold; /* Azul más oscuro al pasar el mouse */
 }

@@ -8,12 +8,163 @@
 .home h1 {
     margin-bottom: 20px;
 }
+.top-bar {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between; /* Para alinear los botones y filtros */
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.top-bar button {
+    padding: 10px 20px;
+    background-color: #cf46a2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.top-bar button:hover {
+    background-color: #cf46a16c;
+}
+/* Contenedor de filtros */
+.filters-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el título "Filtros:" */
+.filters-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilos para los filtros */
+.filters {
+    display: flex;
+    gap: 20px;
+}
+
+.filters div {
+    display: flex;
+    flex-direction: column;
+}
+
+.filters label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.filters select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 150px;
+}
+
+.filters select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 150px;
+}
 
 .product-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px; /* Espacio de 10px entre los botones */
+    align-items: center; /* Centra verticalmente los botones */
+}
+
+.add-product-button {
+    margin-left: auto; /* Mueve el botón de "Agregar Producto" a la derecha */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    height: 50px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6e28a7; /* Cambia este color si quieres que sea otro */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #6e28a7; /* Cambia este color si quieres que sea otro */
+}
+.shopping-cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    height: 50px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-product-button:hover, .shopping-cart-button:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+.cart {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+.cart h2 {
+    margin-bottom: 15px;
+}
+
+.cart ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .product-card {
@@ -42,12 +193,13 @@
 
 .product-card:hover {
     transform: translateY(-5px);
+    background-color: #f0eaef;
 }
 /* src/styles/home.css */
 .add-product-btn {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #28a745;
+    background-color: #6e28a7;
     color: white;
     border: none;
     border-radius: 5px;
@@ -56,8 +208,8 @@
 }
 
 .add-product-btn:hover {
-    background-color: #218838;
-}
+    background-color: #6e28a78c;
+}/* Estilos para la factura */
 .invoice {
     border: 1px solid #ccc;
     padding: 10px;
@@ -76,4 +228,31 @@
 
 .invoice li {
     margin-bottom: 5px;
+}
+
+.invoice p {
+    font-weight: bold;
+}
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-icon {
+    font-size: 1.5rem;
+    color: #6e28a7;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.cart-icon:hover {
+    color: #6e28a7a2;
+    transform: scale(1.2);
+}
+.home-title {
+    color: white;
+    text-align: center; /* Opcional: centra el título */
+    margin-bottom: 10px; /* Espaciado opcional */
 }

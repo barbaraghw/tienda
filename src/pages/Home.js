@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useProducts } from '../context/ProductContext';
 import ProductCard from '../components/ProductCard';
-import Filters from '../components/Filters'; // Verifica que la importación sea correcta
+import Filters from '../components/Filters';
 import { Link } from 'react-router-dom';
+import { FaCartPlus } from "react-icons/fa";
+import { FaShoppingCart } from 'react-icons/fa';
+
 
 const Home = () => {
-    const { products, deleteProduct } = useProducts();
+    const { products, deleteProduct, addProduct } = useProducts();
     const { currentUser } = useAuth();
     const [cart, setCart] = useState([]);
     const [showCart, setShowCart] = useState(false);
     const [purchaseComplete, setPurchaseComplete] = useState(false);
+    const [filteredProducts, setFilteredProducts] = useState(products);
+
+    // Actualizar productos filtrados cada vez que cambie el estado de productos o filtros
+    useEffect(() => {
+        setFilteredProducts(products);
+    }, [products]);
 
     const handleAddToCart = (product) => {
         setCart((prevCart) => [...prevCart, product]);
@@ -45,15 +54,39 @@ const Home = () => {
         setCart([]);
     };
 
+    // Manejar el cambio de filtro y actualizar la lista de productos filtrados
+    const handleFilterChange = (filters) => {
+        const { category, priceRange } = filters;
+
+        const minPrice = priceRange?.min ?? 0;
+        const maxPrice = priceRange?.max ?? Infinity;
+
+        const filtered = products.filter(product => {
+            const matchesCategory = !category || product.category === category;
+            const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
+            return matchesCategory && matchesPrice;
+        });
+
+        setFilteredProducts(filtered);
+    };
+
     return (
         <div className="home">
-            <Filters onFilterChange={() => {}} />
-
-            {/* Botón de carrito */}
-            <button onClick={() => setShowCart(!showCart)} style={{ marginBottom: '10px' }}>
-                {showCart ? 'Cerrar Carrito' : 'Ver Carrito'}
-            </button>
-
+            <div className="top-bar">
+                {/* Filtros, botón de agregar producto y carrito en una fila */}
+                <Filters onFilterChange={handleFilterChange} />
+                
+                
+                <div className="button-container">
+                <div className="button-container">
+        <Link to="/add-product">
+            <button className="add-product-button">Agregar Producto</button>
+        </Link>
+        <button onClick={() => setShowCart(!showCart)} className="shopping-cart-button">
+                    {showCart ? 'Cerrar Carrito' : <FaShoppingCart className="shopping-cart-icon" />}
+                </button> </div>
+            </div>
+            </div>
             {/* Mostrar el carrito */}
             {showCart && (
                 <div className="cart">
@@ -64,7 +97,7 @@ const Home = () => {
                                 {cart.map((product) => (
                                     <li key={product.id}>
                                         {product.name} - ${product.price}{' '}
-                                        <button onClick={() => handleRemoveFromCart(product.id)}>Eliminar</button>
+                                        <button className="button" onClick={() => handleRemoveFromCart(product.id)}>Eliminar</button>
                                     </li>
                                 ))}
                             </ul>
@@ -96,25 +129,22 @@ const Home = () => {
                 </div>
             )}
 
-            {/* Mostrar botón de agregar producto solo si el usuario es admin */}
-            {currentUser && currentUser.isAdmin && (
-                <Link to="/add-product">
-                    <button>Agregar Producto</button>
-                </Link>
-            )}
-
-            {/* Mostrar la lista de productos */}
+            {/* Mostrar la lista de productos filtrados */}
             <div className="product-list">
-                {products.map((product) => (
-                    <div key={product.id}>
-                        <ProductCard 
-                            product={product} 
-                            onDelete={() => handleDelete(product.id)} 
-                        />
-                        {/* Botón para agregar productos al carrito */}
-                        <button onClick={() => handleAddToCart(product)}>Agregar al Carrito</button>
-                    </div>
-                ))}
+            {filteredProducts.length > 0 ? (
+    filteredProducts.map((product) => (
+        <ProductCard
+            key={product.id}
+            product={product}
+            onAddToCart={handleAddToCart}
+            currentUser={currentUser}
+            onDelete={() => handleDelete(product.id)}
+        />
+    ))
+) : (
+    <p>No se encontraron productos para mostrar.</p>
+)}
+
             </div>
         </div>
     );

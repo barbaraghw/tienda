@@ -41,14 +41,13 @@ const RegisterForm = () => {
                     required
                 />
             </div>
-            <div>
+            <div className="admin-checkbox">
                 <label>
                     <input
                         type="checkbox"
                         checked={isAdmin}
                         onChange={(e) => setIsAdmin(e.target.checked)}
-                    />
-                    ¿Es administrador?
+                    />¿Eres administrador?
                 </label>
             </div>
             <button type="submit">Registrarse</button>

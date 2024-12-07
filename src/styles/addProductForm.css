@@ -2,7 +2,7 @@
 .add-product-form {
     margin: 20px;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 3px solid #cf46a1b2;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -53,10 +53,10 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #007bff;
+    background-color: #cf46a2;
     color: white;
 }
 
 .form-buttons button:hover {
-    background-color: #0056b3;
+    background-color: #cf46a1b2;
 }
